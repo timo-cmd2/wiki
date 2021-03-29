@@ -6,7 +6,7 @@
 ;;    is one of my first ever polymorphic generic malware for the Win32.
 ;;    As it is a perfect opporunity to show my BlaCk-H@ skillzz. xD.
 ;;    HoweveR, Im still a n0ob in asm sO the C0de mighT be buggY. However,
-;;    The worm body is still unfinished, so don't expect much!
+;;    The worm body is ****still unfinished****, so don't expect much!
 ;;
 ;; General sheet of characteristics:
 ;;    Name of the virus.............: Win32.ThermalSh4ke
